@@ -1,12 +1,8 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-from graphviz import Digraph
 
-st.set_page_config(page_title="Auditoría Forense - AgroAndes", layout="wide")
+st.title("Infografía: Pasos clave en la Auditoría Forense - Caso AgroAndes S.A.")
 
-st.title("Auditoría Forense - Caso AgroAndes S.A.")
-
-# --- Infografía con matplotlib ---
 def plot_infografia():
     steps = [
         "1. Reunión inicial con gerencia",
@@ -29,29 +25,5 @@ def plot_infografia():
     plt.title("Infografía: Pasos clave en la Auditoría Forense AgroAndes S.A.", fontsize=14)
     st.pyplot(fig)
 
-# --- Mapa Mental con graphviz ---
-def render_mapa_mental():
-    dot = Digraph(comment='Mapa Mental Auditoría Forense AgroAndes')
-
-    dot.node('A', 'Auditoría Forense')
-    dot.node('B', 'Evaluación de Riesgos')
-    dot.node('C', 'Análisis Documental')
-    dot.node('D', 'Investigación Física')
-    dot.node('E', 'Análisis Digital')
-    dot.node('F', 'Entrevistas')
-    dot.node('G', 'Informe Final')
-
-    dot.edges(['AB', 'AC', 'AD', 'AE', 'AF'])
-    dot.edge('A', 'G')
-
-    # Guardar imagen en temporal y mostrar
-    file_path = "mapa_mental_auditoria_forense"
-    dot.render(file_path, format='png', cleanup=True)
-    st.image(file_path + ".png", caption='Mapa Mental Auditoría Forense')
-
-# --- Main ---
-st.header("Infografía de Pasos de Auditoría")
 plot_infografia()
 
-st.header("Mapa Mental de Auditoría Forense")
-render_mapa_mental()
